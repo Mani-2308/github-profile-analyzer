@@ -49,10 +49,13 @@ const analyzeProfile = async (req, res) => {
         );
 
     } catch (error) {
-        res.status(404).json({
-            message: "GitHub user not found"
-        });
-    }
+    console.log(error);
+
+    res.status(500).json({
+        message: error.message,
+        error: error.response?.data || error
+    });
+}
 };
 
 const getAllProfiles = (req, res) => {
